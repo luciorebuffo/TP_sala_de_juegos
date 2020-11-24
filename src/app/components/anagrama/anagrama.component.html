@@ -1,0 +1,8 @@
+<form>
+    <label class="anagramaLabel" >{{palabraAnagrama}}</label><br>
+    
+
+    <input type="text" name="anagramaUsuario" class="txtAnagrama" [(ngModel)]="palabraUsuario">
+
+    <button class="btnEnviar" (click)="corroborarAnagrama($event)">ENVIAR</button>
+</form>

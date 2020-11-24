@@ -1,0 +1,97 @@
+
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #6f08aa;
+    color: white;
+    font-weight: 600;
+  }
+
+  .link2{
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+
+<div class="toolbar" role="banner">
+  <nav>
+    <a class="link2" routerLink='' routerLinkActive="active">Home</a>
+    <a class="link2" routerLink='Registro' routerLinkActive="active">Registro</a>
+    <a class="link2" routerLink='Anagrama' routerLinkActive="active">Anagrama</a>
+    <a class="link2" routerLink='PPT' routerLinkActive="active">PPT</a>
+    <a class="link2" routerLink='JuegoAdivina' routerLinkActive="active">Juego Adivina</a>
+    <a class="link2" routerLink='AgilidadAritmetica' routerLinkActive="active">Agilidad Aritmetica</a>
+    <a class="link2" routerLink='TaTeTi' routerLinkActive="active">TaTeTi</a>
+    
+
+  </nav>
+</div>
+<br><br><br><br>
+<div>
+  <router-outlet></router-outlet>
+</div>

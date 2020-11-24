@@ -1,0 +1,34 @@
+.anagramaLabel{
+    font: oblique bold 120% cursive;
+    font-size: 80px;
+    margin-left: 35%;
+      
+}
+
+.txtAnagrama{
+    align-content: center;
+    border-radius: 10px;
+    border: 3px solid #36124e;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 10%;
+    margin-left: 30%;
+    size: 100;
+    
+}
+
+.btnEnviar{
+    border-radius: 10px 10px 10px 10px;
+    border: 3px solid #0f0318;
+    background-color: #641a99;
+    color: blanchedalmond;
+    font: oblique bold 120% cursive;
+    size: 20;
+    margin-top: 5%;
+    margin-left: 45%;
+}
+.btnEnviar:hover{
+    color: black;
+}

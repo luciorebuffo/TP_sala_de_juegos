@@ -1,0 +1,10 @@
+<form>
+
+    <label class="label" >email</label><br>
+    <input type="text" name="email" class="txtEmail" [(ngModel)]="email"><br><br>
+
+    <label class="label" >contraseña</label><br>
+    <input type="text" name="contraseña" class="txtContraseña" [(ngModel)]="password"><br><br>
+
+    <button class="btnEnviar" (click)="login($event)">ENVIAR</button>
+</form>
