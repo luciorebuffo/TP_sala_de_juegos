@@ -11,6 +11,7 @@ import { TaTeTiComponent } from './components/ta-te-ti/ta-te-ti.component';
 import { LoginComponent } from './components/login/login.component';
 import { PuntajesComponent } from './components/puntajes/puntajes.component';
 import { LoginGuard } from './guards/login.guard';
+import { JuegoPropioComponent } from './components/juego-propio/juego-propio.component';
 
 
 
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path:'Puntajes',
     component: PuntajesComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path:'JuegoPropio',
+    component: JuegoPropioComponent,
     canActivate: [LoginGuard]
   },
   {

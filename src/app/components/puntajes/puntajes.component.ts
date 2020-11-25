@@ -17,6 +17,7 @@ export class PuntajesComponent implements OnInit {
   resultadosAnagrama = [];
   resultadosPPT = [];
   resultadosTateti = [];
+  resultadosTesoro = [];
   resultados : Observable<any>;
   filtroJuego : string = "";
 
@@ -26,6 +27,7 @@ export class PuntajesComponent implements OnInit {
     this.traerDatosAnagrama();
     this.traerDatosPPT();
     this.traerDatosTaTeTi();
+    this.traerDatosTesoro();
    }
 
   ngOnInit(): void {
@@ -91,6 +93,22 @@ export class PuntajesComponent implements OnInit {
       //console.log(this.Mascotas);
     })
 
+  }
+  traerDatosTesoro(){
+    const doc =  this.afs.collection('puntajes',ref => ref.where('juego','==', 'tesoro' ));
+
+    doc
+    .valueChanges()
+    .subscribe(data =>{
+      this.resultadosTesoro = data;
+      //console.log(this.resultadosTateti);
+      //console.log(this.Mascotas);
+    })
+
+  }
+
+  volver(){
+    this.router.navigateByUrl('');
   }
 
 }

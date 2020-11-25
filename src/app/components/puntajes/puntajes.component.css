@@ -46,6 +46,7 @@ td{
 h1{
     color:white;
     text-align: center;
+    
 }
 
 body {
@@ -62,3 +63,21 @@ body {
     border-radius: 5px;
 }
 
+
+.btnVolver{
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 80%;
+    background-color: #4b25a3;
+    background: -webkit-linear-gradient(to right, #417dff, #d356df);
+    background: linear-gradient(to right, #417dff, #d356df);
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 20px;
+    letter-spacing: 1px;
+    color: white;
+    
+}
+.btnVolver:hover{
+    color:rgb(52, 144, 206);
+}

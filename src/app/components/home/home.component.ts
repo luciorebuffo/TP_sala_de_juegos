@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit {
   aritmetica(){
     this.router.navigateByUrl("AgilidadAritmetica");
   }
+  juegoPropio(){
+    this.router.navigateByUrl("JuegoPropio");
+  }
+
 
   logout(){
 

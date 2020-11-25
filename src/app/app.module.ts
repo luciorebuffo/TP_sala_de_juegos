@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { PuntajesComponent } from './components/puntajes/puntajes.component';
+import { JuegoPropioComponent } from './components/juego-propio/juego-propio.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PuntajesComponent } from './components/puntajes/puntajes.component';
     LoginComponent,
     RegistroComponent,
     MenuComponent,
-    PuntajesComponent
+    PuntajesComponent,
+    JuegoPropioComponent
   ],
   imports: [
     BrowserModule,
