@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -26,7 +30,12 @@ export class TaTeTiComponent implements OnInit {
   band : boolean;
   nombreJugador : string;
 
-  constructor() { }
+  
+  user:any;
+
+  constructor(private auth: AngularFireAuth,private router: Router,private afs : AngularFirestore) {
+    this.terminoJuego = true;
+   }
 
   ngOnInit(): void {
   }
@@ -167,6 +176,9 @@ export class TaTeTiComponent implements OnInit {
           (<HTMLInputElement>document.getElementById("botonOcho")).disabled = true;
           (<HTMLInputElement>document.getElementById("botonNueve")).disabled = true;
           this.terminoJuego = false;
+          alert(this.resultado);
+          this.guardarPuntaje();
+          this.router.navigateByUrl('');
           
         }
         else
@@ -200,6 +212,10 @@ export class TaTeTiComponent implements OnInit {
               (<HTMLInputElement>document.getElementById("botonOcho")).disabled = true;
               (<HTMLInputElement>document.getElementById("botonNueve")).disabled = true;
               this.terminoJuego = false;
+              alert(this.resultado);
+              this.guardarPuntaje();
+              this.router.navigateByUrl('');
+              
              
           }  
         }
@@ -231,8 +247,41 @@ export class TaTeTiComponent implements OnInit {
     this.terminoJuego = true;
     this.botonesJuego = true;
     this.botonesEleccion = false;
-    this.jugar();
+    
    
+  }
+
+  guardarPuntaje(){
+
+    const random = Math.floor(Math.random() * 100000000) + 1
+    
+    this.user = JSON.parse(localStorage.getItem('usuario'));
+    
+    const ID = String(random).concat(this.user.email);
+
+    const puntaje = {
+      id: ID,
+      juego: "tateti", 
+      jugador: this.user.email,
+      puntaje: this.resultado
+      
+    };
+
+
+    //console.log(puntaje);
+    try {
+
+      const insert =  this.afs.collection('puntajes').doc(ID).set(puntaje);
+
+      console.log(insert);
+
+    } catch (error) {
+
+      console.log(error);
+      this.router.navigateByUrl('');
+
+    }
+
   }
 
 

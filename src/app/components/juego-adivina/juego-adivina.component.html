@@ -1,7 +1,26 @@
 
- <form>
-    <label>ingrese numero:  </label>
-    <input type="text" name="juegoAdivina" class="juegoAdivina" [(ngModel)]="numeroIngresado">
+<html >
+<head >
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body style= "background:#222">
 
-    <button class="btnEnviar" (click)="juego()">ENVIAR</button>
-</form>
+    <h1 >Adivina el Numero</h1>
+    
+<div class="container callout-subtitle animate__animated animate__zoomInDown" id="container" >
+    <br><br><h1>ingrese numero:  </h1>
+            <h1>{{Mensajes}}  </h1>
+            <h1>{{ayuda}}  </h1>
+    <form>
+        
+        <input type="text" name="juegoAdivina" class="juegoAdivina" [(ngModel)]="numeroIngresado"><br><br>
+    
+        <button class="btnEnviar" (click)="juego()">ENVIAR</button>
+    </form>
+		
+</div>
+</body>
+</html>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-juego-adivina',
@@ -16,9 +20,13 @@ export class JuegoAdivinaComponent implements OnInit {
 
   Mensajes = "";
 
+  ayuda = "";
+
   puntaje = 100;
 
-  constructor() {
+  usuario:any;
+  
+  constructor(private auth: AngularFireAuth,private router: Router,private afs : AngularFirestore) {
 
     this.generarnumero();
     console.log(this.numeroSecreto);
@@ -49,6 +57,7 @@ export class JuegoAdivinaComponent implements OnInit {
   verificar() {
     if (this.numeroIngresado == this.numeroSecreto) {
       this.gano = true;
+      
     }
     if (this.gano) {
       return true;
@@ -68,44 +77,46 @@ export class JuegoAdivinaComponent implements OnInit {
       
       
       alert("Ganaste!! Puntaje: "+this.puntaje);
-      
+      this.guardarPuntaje();
+      this.router.navigateByUrl('');
       
      
 
     }else{
 
-      let mensaje:string;
+      
       switch (this.contador) {
         case 1:
           this.puntaje--;
-          mensaje="No, intento fallido, animo";
+          this.Mensajes="No, intento fallido, animo";
           break;
           case 2:
           this.puntaje--;
-          mensaje="No,Te estaras Acercando???";
+          this.Mensajes="No,Te estaras Acercando???";
           break;
           case 3:
           this.puntaje--;
-          mensaje="No es, Yo crei que la tercera era la vencida.";
+          this.Mensajes="No es, Yo crei que la tercera era la vencida.";
           break;
           case 4:
           this.puntaje--;
-          mensaje="No era el  "+this.numeroIngresado;
+          this.Mensajes="No era el  "+this.numeroIngresado;
           break;
           case 5:
           this.puntaje--;
-          mensaje=" intentos y nada.";
+          this.Mensajes=" intentos y nada.";
           break;
           case 6:
           this.puntaje--;
-          mensaje="Afortunado en el amor";
+          this.Mensajes="Afortunado en el amor";
           break;
         default:
           this.puntaje--;
-            mensaje="Ya le erraste "+ this.contador+" veces";
+          this.Mensajes="Ya le erraste "+ this.contador+" veces";
           break;
       }
-      alert(this.contador+" "+mensaje+" ayuda :"+this.retornarAyuda());
+      //alert(this.contador+" "+this.Mensajes+" ayuda :"+this.retornarAyuda());
+      this.ayuda = this.retornarAyuda();
      
 
     }
@@ -115,7 +126,42 @@ export class JuegoAdivinaComponent implements OnInit {
   checkGanoPerdio(){
     if(this.puntaje == 0){
       alert("100 veces perdiste salame!");
+      this.guardarPuntaje();
+      this.router.navigateByUrl('');
     }
+  }
+
+  guardarPuntaje(){
+
+    const random = Math.floor(Math.random() * 100000000) + 1
+    
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    
+    const ID = String(random).concat(this.usuario.email);
+
+    const puntaje = {
+      id: ID,
+      juego: "adivina", 
+      jugador: this.usuario.email,
+      puntaje: this.puntaje
+      
+    };
+
+
+    //console.log(puntaje);
+    try {
+
+      const insert =  this.afs.collection('puntajes').doc(ID).set(puntaje);
+
+      console.log(insert);
+
+    } catch (error) {
+
+      console.log(error);
+      this.router.navigateByUrl('');
+
+    }
+
   }
 
 

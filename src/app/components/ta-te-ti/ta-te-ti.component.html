@@ -1,15 +1,29 @@
-<div class="container" style="text-align: center;">
+
+<html >
+<head >
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body style= "background:#222">
+
+    <h1 >Juego Ta-Te-Ti</h1>
+    
+<div class = "juego" class="container callout-subtitle animate__animated animate__zoomInDown" id="container" >
+	
+  <div class="juego" style="text-align: center;">
      
-    <div style="padding: 10px;background:whitesmoke;margin-top: 5%">
-      <div [hidden]="botonesEleccion">
-        <h4 style="color: black;">Seleccione su personaje favorito:</h4>
+    <div class = "juego" style="padding: 10px;margin-top: 5%">
+      <div class = "juego" [hidden]="botonesEleccion">
+        <h1>Seleccione su personaje favorito:</h1>
         <br>
         <br>
         <button mat-raised-button (click)="eleccionSigno('X')"><img src="assets/images/X.gif" border="0" name="rc9"></button>
         <button mat-raised-button (click)="eleccionSigno('O')"><img src="assets/images/O.gif" border="0" name="rc9"></button>
       </div>
-      <div [hidden]="botonesJuego">
-        <h4 style="color: black;">Comienza el juego</h4>
+      <div class = "juego"[hidden]="botonesJuego">
+        <h1 >Comienza el juego</h1>
             
             <div class="ui-g-12">
                 <button mat-raised-button id="botonUno" (click)="modificar(0)" [disabled]="band==true"><img src="assets/images/nothing.gif" id="rc0" border="0" name="rc0"></button>
@@ -33,6 +47,14 @@
             <br>
             <br>
             <br>
-        
-        
+            
+      </div>
+      
+      
     </div>
+    
+</div>
+
+</div>
+</body>
+</html>

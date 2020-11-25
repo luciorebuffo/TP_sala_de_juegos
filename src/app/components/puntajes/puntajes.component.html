@@ -1,0 +1,221 @@
+
+<!--<div class="listaActividad">
+    <div style="text-align: center">
+        <label class="label">Juego:</label> <select class="select" [(ngModel)]="filtroJuego">
+                <option value="">Seleccione un juego</option>
+                <option value="aen">Adivina el número</option>
+                <option value="aa">Agilidad aritmética</option>
+                <option value="ppt">Piedra papel o tijera</option>
+                <option value="ttt">Ta-te-ti</option>
+                <option value="ag">Anagrama</option>
+              </select>
+    </div>
+</div>
+
+
+
+<div style="background-color:whitesmoke;">
+  <div *ngIf="filtroJuego == 'aen'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>
+            <th>Puntos</th>
+            
+          </thead>
+          <tbody *ngFor="let item of resultadosAdivina">
+            <td>{{item.jugador}}</td>
+            <td>{{item.puntaje}}</td>
+            
+          </tbody>
+        </table>
+  </div>
+  
+  <div *ngIf="filtroJuego == 'aa'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>
+            <th>Puntos</th>                
+          </thead>
+          <tbody *ngFor="let item of resultadosAgilidad">
+            <td>{{item.jugador}}</td>
+            <td>{{item.puntaje}}</td>               
+          </tbody>
+        </table>
+  </div>
+  
+  <div *ngIf="filtroJuego == 'ag'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>
+            <th>Puntos</th>               
+            
+          </thead>
+          <tbody *ngFor="let item of resultadosAnagrama">
+            <td>{{item.jugador}}</td>
+            <td>{{item.puntaje}}</td>               
+            
+          </tbody>
+        </table>
+  </div>
+  
+  <div *ngIf="filtroJuego == 'ppt'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>                
+            <th>Puntos</th>
+            <th>Resultado</th>
+          </thead>
+          <tbody *ngFor="let item of resultadosPPT">
+            <td>{{item.jugador}}</td>               
+            <td>{{item.puntaje}}</td>
+            <td>{{item.gano}}</td>
+          </tbody>
+        </table>
+  </div>
+  
+  <div *ngIf="filtroJuego == 'rv'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>
+            <th>Resultado</th>
+          </thead>
+          <tbody *ngFor="let item of resultadosBlackJack">
+            <td>{{item.usuario}}</td>
+            <td>{{item.resultado}}</td>
+          </tbody>
+        </table>
+  </div>
+  <div *ngIf="filtroJuego == 'ttt'">
+      <table class="table table-striped">
+          <thead>
+            <th>Usuario</th>
+            <th>Resultado</th>
+          </thead>
+          <tbody *ngFor="let item of resultadosTateti">
+            <td>{{item.jugador}}</td>
+            <td>{{item.puntaje}}</td>
+          </tbody>
+        </table>
+  </div>
+</div>-->
+
+
+<html >
+<head >
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body style= "background:#222">
+
+    <h1 >Puntajes</h1>
+    
+<div class="container callout-subtitle animate__animated animate__zoomInDown" id="container" >
+
+    <div class="listaActividad">
+        <div style="text-align: center">
+            <label class="label">Juego:</label> <select class="select" [(ngModel)]="filtroJuego">
+                    <option value="">Seleccione un juego</option>
+                    <option value="aen">Adivina el número</option>
+                    <option value="aa">Agilidad aritmética</option>
+                    <option value="ppt">Piedra papel o tijera</option>
+                    <option value="ttt">Ta-te-ti</option>
+                    <option value="ag">Anagrama</option>
+                  </select>
+        </div>
+    </div>
+    
+    
+    
+    <div class = "divSelect">
+      <div *ngIf="filtroJuego == 'aen'">
+          <table class="table table-striped">
+              <thead >
+                <th>Usuario</th>
+                <th>Puntos</th>
+                
+              </thead>
+              <tbody *ngFor="let item of resultadosAdivina">
+                
+                <td>{{item.jugador}}</td>
+                <td>{{item.puntaje}}</td>
+                
+                
+              </tbody>
+            </table>
+      </div>
+      
+      <div *ngIf="filtroJuego == 'aa'">
+          <table class="table table-striped">
+              <thead>
+                <th>Usuario</th>
+                <th>Puntos</th>                
+              </thead>
+              <tbody *ngFor="let item of resultadosAgilidad">
+                <td>{{item.jugador}}</td>
+                <td>{{item.puntaje}}</td>               
+              </tbody>
+            </table>
+      </div>
+      
+      <div *ngIf="filtroJuego == 'ag'">
+          <table class="table table-striped">
+              <thead>
+                <th>Usuario</th>
+                <th>Puntos</th>               
+                
+              </thead>
+              <tbody *ngFor="let item of resultadosAnagrama">
+                <td>{{item.jugador}}</td>
+                <td>{{item.puntaje}}</td>               
+                
+              </tbody>
+            </table>
+      </div>
+      
+      <div *ngIf="filtroJuego == 'ppt'">
+          <table class="table table-striped">
+              <thead>
+                <th>Usuario</th>                
+                <th>Puntos</th>
+                <th>Resultado</th>
+              </thead>
+              <tbody *ngFor="let item of resultadosPPT">
+                <td>{{item.jugador}}</td>               
+                <td>{{item.puntaje}}</td>
+                <td>{{item.gano}}</td>
+              </tbody>
+            </table>
+      </div>
+      
+      <div *ngIf="filtroJuego == 'rv'">
+          <table class="table table-striped">
+              <thead>
+                <th>Usuario</th>
+                <th>Resultado</th>
+              </thead>
+              <tbody *ngFor="let item of resultadosBlackJack">
+                <td>{{item.usuario}}</td>
+                <td>{{item.resultado}}</td>
+              </tbody>
+            </table>
+      </div>
+      <div *ngIf="filtroJuego == 'ttt'">
+          <table class="table table-striped">
+              <thead>
+                <th>Usuario</th>
+                <th>Resultado</th>
+              </thead>
+              <tbody *ngFor="let item of resultadosTateti">
+                <td>{{item.jugador}}</td>
+                <td>{{item.puntaje}}</td>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    
+		
+</div>
+</body>
+</html>

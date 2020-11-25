@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-ppt',
@@ -10,13 +14,35 @@ export class PPTComponent implements OnInit {
   result: string;
   pointsUser = 0;
   pointsComp =  0;
+  puntaje = 0 ;
+  usuario:any;
 
-
-  constructor() { }
+  constructor(private auth: AngularFireAuth,private router: Router,private afs : AngularFirestore) { }
 
   ngOnInit(): void {
     this.result = 'Esperando jugada...';
     console.log(this.pointsUser);
+
+   
+
+    
+
+    
+  }
+
+  testJuego(){
+    if(this.pointsUser == 5){
+      alert("Ganaste!");
+      this.guardarPuntaje("gano");
+      this.router.navigateByUrl('');
+      
+
+    }
+    if(this.pointsComp == 5){
+      alert("Perdiste! :(");
+      this.guardarPuntaje("perdio");
+      this.router.navigateByUrl('');
+    }
   }
 
 
@@ -39,8 +65,10 @@ export class PPTComponent implements OnInit {
     userAdd: number;
     compAdd: number;
   } {
+
     const playUserComp = userChoice + this.getComputerChoice();
     console.log(`Jugada realizada: ${playUserComp}`);
+      
     let playStatus: {
       message: string;
       userAdd: number;
@@ -56,6 +84,7 @@ export class PPTComponent implements OnInit {
           userAdd: 1,
           compAdd: 0,
         };
+        this.puntaje = this.puntaje + 2;
         break;
       // Gana la computadora
       case 'rp':
@@ -75,7 +104,9 @@ export class PPTComponent implements OnInit {
           message: 'Eligen lo mismo y empatan',
           userAdd: 0,
           compAdd: 0,
+          
         };
+        this.puntaje++;
         break;
     }
     return playStatus;
@@ -86,6 +117,42 @@ export class PPTComponent implements OnInit {
     this.result = result.message;
     this.pointsUser += result.userAdd;
     this.pointsComp += result.compAdd;
+    this.testJuego();
+  }
+
+
+  guardarPuntaje(Gano){
+
+    const random = Math.floor(Math.random() * 100000000) + 1
+    
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    
+    const ID = String(random).concat(this.usuario.email);
+
+    const puntaje = {
+      id: ID,
+      juego: "PPT", 
+      jugador: this.usuario.email,
+      gano: Gano,
+      puntaje: this.puntaje
+      
+    };
+
+
+    //console.log(puntaje);
+    try {
+
+      const insert =  this.afs.collection('puntajes').doc(ID).set(puntaje);
+
+      console.log(insert);
+
+    } catch (error) {
+
+      console.log(error);
+      this.router.navigateByUrl('');
+
+    }
+
   }
 
 }

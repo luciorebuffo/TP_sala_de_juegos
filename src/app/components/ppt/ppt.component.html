@@ -1,4 +1,4 @@
-<div >
+<!--<div >
   <div class="score-board">
     <div id="user-label" class="badge">user</div>
     <div id="comp-label" class="badge">comp</div>
@@ -19,4 +19,50 @@
   </div>
 
   <p class="info-game">Selecciona tu jugada</p>
+</div>-->
+
+
+
+<html >
+<head >
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body style= "background:#222">
+
+    <h1 >Piedra Papel o Tijera</h1>
+    
+<div class="container callout-subtitle animate__animated animate__zoomInDown" id="container" >
+	
+		<form >
+			<div >
+        <div class="score-board">
+          <div id="user-label" class="badge">user</div>
+          <div id="comp-label" class="badge">comp</div>
+          <span id="user-score">{{ pointsUser }}:</span><span id="comp-score">{{ pointsComp }}</span>
+        </div>
+        <p class="info-game">{{result}}</p>
+      
+        <div class="choices">
+          <div class="choice" (click)="play('r')">
+            <img src="/assets/img/rock.png">
+          </div>
+          <div class="choice" (click)="play('p')">
+            <img src="/assets/img/paper.png">
+          </div>
+          <div class="choice" (click)="play('s')">
+            <img src="/assets/img/scissors.png">
+          </div>
+        </div>
+      
+        <p class="info-game">Selecciona tu jugada</p>
+      </div>
+
+      <h1 >Puntos: {{puntaje}}</h1>
+		</form>
+		
 </div>
+</body>
+</html>

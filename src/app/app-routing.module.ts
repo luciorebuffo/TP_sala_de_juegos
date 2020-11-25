@@ -9,8 +9,9 @@ import { JuegoAdivinaComponent } from './components/juego-adivina/juego-adivina.
 import { AgilidadAritmeticaComponent } from './components/agilidad-aritmetica/agilidad-aritmetica.component';
 import { TaTeTiComponent } from './components/ta-te-ti/ta-te-ti.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
+import { PuntajesComponent } from './components/puntajes/puntajes.component';
 import { LoginGuard } from './guards/login.guard';
+
 
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path:'Login',
+    component: LoginComponent
   },
   {
     path: 'Anagrama',
@@ -45,12 +50,9 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
-    path:'Login',
-    component: LoginComponent
-  },
-  {
-    path:'Registro',
-    component: RegistroComponent
+    path:'Puntajes',
+    component: PuntajesComponent,
+    canActivate: [LoginGuard]
   },
   {
     path:'**',

@@ -20,6 +20,8 @@ import { AgilidadAritmeticaComponent } from './components/agilidad-aritmetica/ag
 import { TaTeTiComponent } from './components/ta-te-ti/ta-te-ti.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { PuntajesComponent } from './components/puntajes/puntajes.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { RegistroComponent } from './components/registro/registro.component';
     AgilidadAritmeticaComponent,
     TaTeTiComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    MenuComponent,
+    PuntajesComponent
   ],
   imports: [
     BrowserModule,

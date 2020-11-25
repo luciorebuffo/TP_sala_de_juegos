@@ -13,65 +13,112 @@ export class LoginComponent implements OnInit {
 
   email:string;
   password:string;
-  
+  usuarios:any;
+  Data:any;
 
-  usuarios;
-
-  Data;
+  signUpButton = document.getElementById('signUp');
+  signInButton = document.getElementById('signIn');
+  container;
 
   constructor(private auth: AngularFireAuth,private router: Router,private afs : AngularFirestore) { }
 
   ngOnInit(): void {
+    console.log(this.auth);
+    this.container = <HTMLInputElement>document.getElementById('container');
   }
 
-  async login(e){
+  //Display
+activarRegistro(){
+  this.container.classList.add("right-panel-active");
 
+}
+activarLogin(){
+  this.container.classList.remove("right-panel-active");
+
+}
+
+//Codigo Login
+ async Login(e){
+  console.log("Estoy en Login y los datos son : "+this.email+this.password);
+
+  try {
+
+    const rta = await this.auth.signInWithEmailAndPassword(this.email,this.password);
+
+    console.log(rta);
+
+    this.setStorage();
     
     
-    //login EN CLOUD FIRESTORE
+    
+  } catch (error) {
+    console.log(error);
+
+    this.Data = {
+      email: null,
+      password: null,
+      estado: false
+    }
+    localStorage.setItem('usuario',JSON.stringify(this.Data));
+  }
+}
+
+async setStorage(){
+
+  const doc = await this.afs.collection('usuarios').doc(this.email);
+
+  doc.valueChanges().subscribe(usuario => {
+    
+    this.Data = {
+      email: this.email,
+      password: this.password,
+      estado: true
+      
+    }
+    this.router.navigateByUrl('');
+    localStorage.setItem('usuario',JSON.stringify(this.Data));
+
+
+  });
+
+  
+}
+
+//Codigo Registro
+  async Registro(e){
+    console.log("Estoy en Registro y los datos son : "+this.email+this.password);
+
+    //GUARDO EN AUTENTICAR
     try {
 
-      const rta = await this.auth.signInWithEmailAndPassword(this.email,this.password);
-
-      //console.log(rta);
-
-      this.setStorage();
+      const rta = await this.auth.createUserWithEmailAndPassword(this.email,this.password);
       
-      
+      console.log(rta);
+
+      this.router.navigateByUrl("Menu");
       
     } catch (error) {
       console.log(error);
-
-      this.Data = {
-        email: null,
-        password: null,
-        estado: false
-      }
-      localStorage.setItem('usuario',JSON.stringify(this.Data));
     }
 
-    
-    
-  }
+    //GUARDO EN CLOUD FIRESTORE
+    try {
 
-  async setStorage(){
+      const insert =  this.afs.collection('usuarios').doc(this.email).set({
 
-    const doc = await this.afs.collection('usuarios').doc(this.email);
+        email : this.email
 
-    doc.valueChanges().subscribe(usuario => {
-      
-      this.Data = {
-        email: this.email,
-        password: this.password,
-        estado: true
-      }
+      });
 
-      localStorage.setItem('usuario',JSON.stringify(this.Data));
+      console.log(insert);
 
-  
-    });
+    } catch (error) {
 
-    
+      console.log(error);
+
+    }
+
+    this.Login(e);
   }
 
 }

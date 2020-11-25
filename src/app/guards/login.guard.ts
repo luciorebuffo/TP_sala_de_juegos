@@ -10,6 +10,7 @@ export class LoginGuard implements CanActivate {
   usuario;
 
   constructor(private router : Router){
+    
 
   }
   canActivate(
@@ -18,6 +19,7 @@ export class LoginGuard implements CanActivate {
       if(localStorage.getItem("usuario") === null) {
 
         this.router.navigateByUrl("Login");
+       
         
           
       }else{

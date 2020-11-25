@@ -1,10 +1,47 @@
-<form>
+<html >
+<head ></head>
+<body style= "background:#222">
 
-    <label class="label" >email</label><br>
-    <input type="text" name="email" class="txtEmail" [(ngModel)]="email"><br><br>
 
-    <label class="label" >contraseña</label><br>
-    <input type="text" name="contraseña" class="txtContraseña" [(ngModel)]="password"><br><br>
+<div class="container" id="container" >
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Crear Cuenta</h1>
+			
+			<span>Email y contraseña para registrarse</span>
+			
+			<input type="text" name="email" [(ngModel)]="email" placeholder="Email" >
+			<input type="text" name="password" [(ngModel)]="password" placeholder="Contraseña"  >
+			<button (click)="Registro($event)" >Registrarse</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Login</h1>
+			
+			<span>Logueate con tu email y contraseña</span>
+			<input type="text" name="email" [(ngModel)]="email" placeholder="Email" >
+			<input type="text" name="password" [(ngModel)]="password" placeholder="Contraseña"  >
+			
+			<button (click)="Login($event)">Login</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Bienvenido!</h1>
+				<p>Ya estas registrado?</p>
+				<button class="ghost" id="signIn" (click)="activarLogin()">Login</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hola!</h1>
+				<p>No estas registrado? </p>
+				<button class="ghost" id="signUp" (click)="activarRegistro()">Registrarse</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
 
-    <button class="btnEnviar" (click)="login($event)">ENVIAR</button>
-</form>
+
+</html>

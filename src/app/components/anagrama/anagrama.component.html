@@ -1,8 +1,28 @@
-<form>
-    <label class="anagramaLabel" >{{palabraAnagrama}}</label><br>
+
+
+<html >
+<head >
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body style= "background:#222">
+
+    <h1 >Juego Anagrama</h1>
     
+<div class="container callout-subtitle animate__animated animate__zoomInDown" id="container" >
+	
+		<form >
+			<h1 class="anagramaLabel" >{{palabraAnagrama}}</h1><br>
+    
+            <input type="text" name="anagramaUsuario" class="txtAnagrama" [(ngModel)]="palabraUsuario" autofocus><br>
 
-    <input type="text" name="anagramaUsuario" class="txtAnagrama" [(ngModel)]="palabraUsuario">
+            <button class="btnEnviar" (click)="corroborarAnagrama($event)">ENVIAR</button>
 
-    <button class="btnEnviar" (click)="corroborarAnagrama($event)">ENVIAR</button>
-</form>
+            <label class="anagramaLabel" >Puntos: {{puntaje}}</label><br>
+		</form>
+		
+</div>
+</body>
+</html>

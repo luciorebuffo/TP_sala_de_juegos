@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -25,11 +28,20 @@ export class AgilidadAritmeticaComponent implements OnInit {
 
   puntaje;
 
-  constructor(private router: Router) { this.puntaje = 0}
+  txtAdivina;
+
+  usuario:any;
+
+  constructor(private auth: AngularFireAuth,private router: Router,private afs : AngularFirestore) { 
+    this.puntaje = 0;
+    
+    
+  }
 
   ngOnInit(): void {
     
     this.juego();
+    
   }
 
   generarNumero(){
@@ -71,11 +83,11 @@ export class AgilidadAritmeticaComponent implements OnInit {
 
   juego(){
 
+    
     this.numeroUno = this.generarNumero();
     this.numeroDos = this.generarNumero();
     this.generarArit();
     
-
     this.repetidor = setInterval(()=>{ 
       
       this.Tiempo--;
@@ -87,15 +99,20 @@ export class AgilidadAritmeticaComponent implements OnInit {
         //this.verificar();
         //this.ocultarVerificar=true;
         alert("Perdiste! Puntaje: "+this.puntaje);
+        this.guardarPuntaje();
         this.router.navigateByUrl("");
        
       }
       }, 900);
 
+      
   }
 
   resultado(){
 
+    
+    
+    
     switch (this.cuenta) {
       case "+":
         
@@ -124,15 +141,50 @@ export class AgilidadAritmeticaComponent implements OnInit {
           this.puntaje = this.puntaje +10;
           this.Tiempo = 10;
           clearInterval(this.repetidor);
+          
           this.juego();
       }
       else{
-
+        
         clearInterval(this.repetidor);
+        this.guardarPuntaje();
         alert("Perdiste! Puntaje: "+this.puntaje);
         this.router.navigateByUrl("");
         
       }
+
+  }
+
+  guardarPuntaje(){
+
+    const random = Math.floor(Math.random() * 100000000) + 1
+    
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    
+    const ID = String(random).concat(this.usuario.email);
+
+    const puntaje = {
+      id: ID,
+      juego: "aritmetica", 
+      jugador: this.usuario.email,
+      puntaje: this.puntaje
+      
+    };
+
+
+    //console.log(puntaje);
+    try {
+
+      const insert =  this.afs.collection('puntajes').doc(ID).set(puntaje);
+
+      console.log(insert);
+
+    } catch (error) {
+
+      console.log(error);
+      this.router.navigateByUrl('');
+
+    }
 
   }
 
